@@ -2,6 +2,7 @@ package im.actor.server.persist.dialog
 
 import com.github.tototoshi.slick.PostgresJodaSupport._
 import im.actor.server.db.ActorPostgresDriver.api._
+//import slick.jdbc.PostgresProfile.api._
 import im.actor.server.model._
 import org.joda.time.DateTime
 

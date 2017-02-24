@@ -11,7 +11,7 @@ object Dependencies {
     val cats = "0.7.2"
     val circe = "0.5.1"
     val kamon = "0.5.2"
-    val slick = "3.1.1"
+    val slick = "3.2.0"
     val slickPg = "0.14.3"
     val scalatest = "2.2.4"
     val shardakka = "0.1.24"
@@ -63,8 +63,8 @@ object Dependencies {
     val upickle                 = "com.lihaoyi"                   %% "upickle"                       % "0.3.6"
 
     val postgresJdbc            = "org.postgresql"                %  "postgresql"                    % "9.4.1208" exclude("org.slf4j", "slf4j-simple")
-    val slick                   = "com.typesafe.slick"            %% "slick"                         % "3.1.1.2" //V.slick FIXME: remove after slick/slick#1274 released
-    val slickHikaricp           = "com.typesafe.slick"            %% "slick-hikaricp"                % "3.1.1.2" exclude("com.zaxxer", "HikariCP-java6") //V.slick FIXME: remove after slick/slick#1274 released
+    val slick                   = "com.typesafe.slick"            %% "slick"                         % V.slick
+    val slickHikaricp           = "com.typesafe.slick"            %% "slick-hikaricp"                % V.slick exclude("com.zaxxer", "HikariCP-java6")
     val slickJoda               = "com.github.tototoshi"          %% "slick-joda-mapper"             % "2.0.0"
     val slickPg                 = "com.github.tminglei"           %% "slick-pg"                      % V.slickPg
     val slickPgDate2            = "com.github.tminglei"           %% "slick-pg_date2"                % V.slickPg

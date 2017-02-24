@@ -6,7 +6,8 @@ import com.google.protobuf.wrappers.{ Int32Value, StringValue }
 
 trait ByteStringImplicits {
 
-  import slick.driver.PostgresDriver.api._
+  //import slick.driver.PostgresDriver.api._
+  import slick.jdbc.PostgresProfile.api._
 
   implicit val byteStringColumnType = MappedColumnType.base[ByteString, Array[Byte]](
     { bs ⇒ bs.toByteArray },
@@ -15,7 +16,8 @@ trait ByteStringImplicits {
 }
 
 trait ProtoWrappersImplicits {
-  import slick.driver.PostgresDriver.api._
+//  import slick.driver.PostgresDriver.api._
+  import slick.jdbc.PostgresProfile.api._
 
   //TODO: check if it used anywhere
   implicit val stringValueColumnType = MappedColumnType.base[StringValue, String](

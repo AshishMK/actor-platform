@@ -1,9 +1,11 @@
 package im.actor.server.persist.files
 
 import im.actor.server.model.File
-import slick.dbio.Effect.{ Read, Write }
-import slick.driver.PostgresDriver.api._
-import slick.profile.{ FixedSqlAction, SqlAction }
+import slick.dbio.Effect.{Read, Write}
+import slick.sql.{FixedSqlAction, SqlAction}
+//import slick.driver.PostgresDriver.api._
+import slick.jdbc.PostgresProfile.api._
+//import slick.profile.{ FixedSqlAction, SqlAction }
 
 final class FileTable(tag: Tag) extends Table[File](tag, "files") {
   def id = column[Long]("id", O.PrimaryKey)
