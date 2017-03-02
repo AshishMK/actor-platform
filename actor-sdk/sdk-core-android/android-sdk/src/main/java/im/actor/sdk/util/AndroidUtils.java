@@ -36,6 +36,10 @@ public class AndroidUtils {
         }
     }
 
+    public static void cancelRunOnUIThread(Runnable runnable) {
+       AndroidContext.applicationHandler().removeCallbacks(runnable);
+    }
+
     public static void runOnUIThread(Runnable runnable) {
         runOnUIThread(runnable, 0);
     }
