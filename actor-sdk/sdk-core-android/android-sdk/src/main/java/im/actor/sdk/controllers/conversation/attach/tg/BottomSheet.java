@@ -16,6 +16,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -43,6 +44,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import im.actor.runtime.Log;
+import im.actor.runtime.android.AndroidContext;
 import im.actor.sdk.R;
 import im.actor.sdk.util.AndroidUtils;
 import im.actor.sdk.util.LayoutHelper;
@@ -455,7 +457,7 @@ public class BottomSheet extends Dialog {
                 textView.setGravity(Gravity.CENTER);
                 textView.setTextColor(0xff212121);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(Typeface.createFromAsset(AndroidContext.getContext().getAssets(), "Roboto-Medium.ttf"));
                 addView(textView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
             }
         }
@@ -501,7 +503,7 @@ public class BottomSheet extends Dialog {
         touchSlop = vc.getScaledTouchSlop();
 
         Rect padding = new Rect();
-        shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow);
+        shadowDrawable = context.getResources().getDrawable(R.drawable.shadow_square_1);
         shadowDrawable.getPadding(padding);
         backgroundPaddingLeft = padding.left;
         backgroundPaddingTop = padding.top;

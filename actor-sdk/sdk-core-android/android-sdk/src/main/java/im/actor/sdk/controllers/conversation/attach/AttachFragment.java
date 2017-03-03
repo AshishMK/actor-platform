@@ -2,6 +2,8 @@ package im.actor.sdk.controllers.conversation.attach;
 
 import android.Manifest;
 import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -24,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -40,6 +43,7 @@ import im.actor.core.utils.GalleryScannerActor;
 import im.actor.runtime.collections.ManagedList;
 import im.actor.sdk.ActorSDK;
 import im.actor.sdk.R;
+import im.actor.sdk.controllers.conversation.attach.tg.AnimatorListenerAdapterProxy;
 import im.actor.sdk.controllers.tools.AttachOpenCloseCallback;
 import im.actor.sdk.controllers.tools.MediaPickerCallback;
 import im.actor.sdk.controllers.tools.MediaPickerFragment;
@@ -368,7 +372,9 @@ public class AttachFragment extends AbsAttachFragment implements MediaPickerCall
         }
 
         prepareView();
+
         if (root.getVisibility() == View.INVISIBLE) {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 Activity activity = getActivity();
                 if (activity == null) {
@@ -381,33 +387,53 @@ public class AttachFragment extends AbsAttachFragment implements MediaPickerCall
                     return;
                 }
             }
+
             onShown();
+
             messenger().getGalleryScannerActor().send(new GalleryScannerActor.Show());
-            showView(root);
 
-//            TranslateAnimation animation = new TranslateAnimation(0, 0, root.getHeight(), 0);
-//            animation.setInterpolator(MaterialInterpolator.getInstance());
-//            animation.setDuration(200);
-//            fastShare.startAnimation(animation);
-//            bottomBackground.startAnimation(animation);
+            root.setVisibility(View.VISIBLE);
 
-            shareButtons.post(new Runnable() {
+            if (Build.VERSION.SDK_INT >= 20) {
+                root.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            }
+
+            root.setTranslationY(root.getMeasuredHeight());
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(
+                    ObjectAnimator.ofFloat(root, "translationY", 0),
+                    ObjectAnimator.ofInt(root, "alpha", 51));
+            animatorSet.setDuration(200);
+            animatorSet.setStartDelay(20);
+            animatorSet.setInterpolator(new DecelerateInterpolator());
+            animatorSet.addListener(new AnimatorListenerAdapterProxy() {
                 @Override
-                public void run() {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                        View internal = fastShare;
-                        int cx = internal.getWidth() - Screen.dp(56 + 56);
-                        int cy = internal.getHeight() - Screen.dp(56 / 2);
-                        float finalRadius = (float) Math.hypot(cx, cy);
-                        Animator anim = ViewAnimationUtils.createCircularReveal(internal, cx, cy, 0, finalRadius);
-                        anim.setDuration(200);
-                        anim.start();
-                        internal.setAlpha(1);
-                    }
+                public void onAnimationEnd(Animator animation) {
+                    root.setLayerType(View.LAYER_TYPE_NONE, null);
+                    shareButtons.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                View internal = fastShare;
+                                int cx = internal.getWidth() - Screen.dp(56 + 56);
+                                int cy = internal.getHeight() - Screen.dp(56 / 2);
+                                float finalRadius = (float) Math.hypot(cx, cy);
+                                Animator anim = ViewAnimationUtils.createCircularReveal(internal, cx, cy, 0, finalRadius);
+                                anim.setDuration(200);
+                                anim.start();
+                                internal.setAlpha(1);
+                            }
+                        }
+                    });
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
                 }
             });
 
-
+            animatorSet.start();
         }
     }
 
