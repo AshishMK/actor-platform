@@ -86,4 +86,22 @@ public class Utilities {
         return data;
     }
 
+    public static String MD5(String md5) {
+        if (md5 == null) {
+            return null;
+        }
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (int a = 0; a < array.length; a++) {
+                sb.append(Integer.toHexString((array[a] & 0xFF) | 0x100).substring(1, 3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+            Log.e("tmessages", e);
+        }
+        return null;
+    }
+
 }

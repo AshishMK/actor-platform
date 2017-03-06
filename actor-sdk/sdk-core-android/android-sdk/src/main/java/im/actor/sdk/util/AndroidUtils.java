@@ -18,6 +18,7 @@ import im.actor.sdk.R;
 public class AndroidUtils {
 
     private static Boolean isTablet = null;
+    public static Integer photoSize = null;
 
     private static String TAG = AndroidUtils.class.getName();
 
@@ -64,5 +65,16 @@ public class AndroidUtils {
                 Log.e(TAG, e);
             }
         }
+    }
+
+    public static int getPhotoSize() {
+        if (photoSize == null) {
+            if (Build.VERSION.SDK_INT >= 16) {
+                photoSize = 1280;
+            } else {
+                photoSize = 800;
+            }
+        }
+        return photoSize;
     }
 }

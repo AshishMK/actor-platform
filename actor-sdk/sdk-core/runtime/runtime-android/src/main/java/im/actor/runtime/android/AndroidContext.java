@@ -5,7 +5,7 @@ import android.os.Handler;
 
 public final class AndroidContext {
 
-    private static Context context;
+    private static volatile Context context;
     private static volatile Handler applicationHandler;
 
     public static Context getContext() {
