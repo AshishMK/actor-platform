@@ -19,15 +19,20 @@ version = '0.0.1'
 def baseVersion = "3.0"
 
 android {
-
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
-
+//    publishNonDefault true
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 24
-    }
 
+        externalNativeBuild {
+            ndkBuild {
+                arguments "NDK_APPLICATION_MK:=jni/Application.mk", "APP_PLATFORM:=android-14"
+                abiFilters "armeabi-v7a", "x86"
+            }
+        }
+    }
     sourceSets {
         main {
 
@@ -56,6 +61,14 @@ android {
         }
     }
 
+    sourceSets.main.jniLibs.srcDirs = ['./jni/']
+
+    externalNativeBuild {
+        ndkBuild {
+            path "jni/Android.mk"
+        }
+    }
+
     lintOptions {
         abortOnError false
     }
@@ -64,36 +77,56 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildTypes {
+        release {
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+
+//    productFlavors {
+//        x86 {
+//            ndk {
+//                abiFilter "x86"
+//            }
+//        }
+//        armv7 {
+//            ndk {
+//                abiFilter "armeabi-v7a"
+//            }
+//        }
+//        fat {
+//        }
+//    }
+
+
+
 }
 
 dependencies {
-
     // Calls
     compile 'io.pristine:libjingle:11139@aar'
-
     // UI
     compile 'com.facebook.fresco:fresco:0.10.0'
     compile 'com.facebook.fresco:animated-gif:0.10.0'
-    compile 'com.facebook.fresco:webpsupport:0.10.0' // Not Enabling animated WebP yet
+    compile 'com.facebook.fresco:webpsupport:0.10.0'
+    // Not Enabling animated WebP yet
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.2.0'
     compile 'com.facebook.rebound:rebound:0.3.8'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
-
     compile 'com.soundcloud.android:android-crop:1.0.0@aar'
     compile('com.github.chrisbanes.photoview:library:1.2.4') {
         exclude module: 'support-v13'
     }
-
     compile 'com.droidkit:progress:0.5'
     compile 'com.getbase:floatingactionbutton:1.9.1'
-
     // Phone parser
     compile files('libs/libphonenumber-5.9.jar')
-
     // Core
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
-
     // Android Support
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:support-v13:25.2.0'

@@ -23,7 +23,13 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+        }
         release {
+            debuggable false
+            jniDebuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -37,10 +43,25 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+//    productFlavors {
+//        x86 {
+//            ndk {
+//                abiFilter "x86"
+//            }
+//        }
+//        armv7 {
+//            ndk {
+//                abiFilter "armeabi-v7a"
+//            }
+//        }
+//    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+//    x86Compile project(path: ':actor-sdk:sdk-core-android:android-sdk', configuration: 'x86Release')
+//    armv7Compile project(path: ':actor-sdk:sdk-core-android:android-sdk', configuration: 'armv7Release')
     compile project(':actor-sdk:sdk-core-android:android-sdk')
     compile project(':actor-sdk:sdk-core-android:android-google-push')
     compile project(':actor-sdk:sdk-core-android:android-google-maps')

@@ -22,7 +22,7 @@ def baseVersion = "3.0"
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-
+//    publishNonDefault true
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 24
@@ -43,6 +43,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildTypes {
+        release {
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+//    productFlavors {
+//        x86 {
+//            ndk {
+//                abiFilter "x86"
+//            }
+//        }
+//        armv7 {
+//            ndk {
+//                abiFilter "armeabi-v7a"
+//            }
+//        }
+//        fat {
+//        }
+//    }
 }
 
 dependencies {

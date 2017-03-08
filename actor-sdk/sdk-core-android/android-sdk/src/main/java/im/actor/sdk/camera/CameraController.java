@@ -20,13 +20,6 @@ import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.provider.MediaStore;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -126,7 +119,6 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                         @Override
                         public void run() {
                             cameraInitied = true;
-                            NotificationCenter.getInstance().postNotificationName(NotificationCenter.cameraInitied);
                         }
                     });
                 } catch (Exception e) {
