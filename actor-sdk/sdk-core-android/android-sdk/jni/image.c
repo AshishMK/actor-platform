@@ -255,7 +255,7 @@ static void fastBlur(int imageWidth, int imageHeight, int imageStride, void *pix
     free(rgb);
 }
 
-JNIEXPORT void Java_org_telegram_messenger_Utilities_blurBitmap(JNIEnv *env, jclass class, jobject bitmap, int radius, int unpin, int width, int height, int stride) {
+JNIEXPORT void Java_im_actor_sdk_util_Utilities_blurBitmap(JNIEnv *env, jclass class, jobject bitmap, int radius, int unpin, int width, int height, int stride) {
     if (!bitmap) {
         return;
     }
@@ -278,7 +278,7 @@ JNIEXPORT void Java_org_telegram_messenger_Utilities_blurBitmap(JNIEnv *env, jcl
     }
 }
 
-JNIEXPORT void Java_org_telegram_messenger_Utilities_calcCDT(JNIEnv *env, jclass class, jobject hsvBuffer, int width, int height, jobject buffer) {
+JNIEXPORT void Java_im_actor_sdk_util_Utilities_calcCDT(JNIEnv *env, jclass class, jobject hsvBuffer, int width, int height, jobject buffer) {
     float imageWidth = width;
     float imageHeight = height;
     float _clipLimit = 1.25f;
@@ -382,7 +382,7 @@ JNIEXPORT void Java_org_telegram_messenger_Utilities_calcCDT(JNIEnv *env, jclass
     free(cdfsMin);
 }
 
-JNIEXPORT int Java_org_telegram_messenger_Utilities_pinBitmap(JNIEnv *env, jclass class, jobject bitmap) {
+JNIEXPORT int Java_im_actor_sdk_util_Utilities_pinBitmap(JNIEnv *env, jclass class, jobject bitmap) {
     if (bitmap == NULL) {
         return 0;
     }
@@ -390,14 +390,14 @@ JNIEXPORT int Java_org_telegram_messenger_Utilities_pinBitmap(JNIEnv *env, jclas
     return AndroidBitmap_lockPixels(env, bitmap, &pixels) >= 0 ? 1 : 0;
 }
 
-JNIEXPORT void Java_org_telegram_messenger_Utilities_unpinBitmap(JNIEnv *env, jclass class, jobject bitmap) {
+JNIEXPORT void Java_im_actor_sdk_util_Utilities_unpinBitmap(JNIEnv *env, jclass class, jobject bitmap) {
     if (bitmap == NULL) {
         return;
     }
     AndroidBitmap_unlockPixels(env, bitmap);
 }
 
-JNIEXPORT jboolean Java_org_telegram_messenger_Utilities_loadWebpImage(JNIEnv *env, jclass class, jobject outputBitmap, jobject buffer, jint len, jobject options, jboolean unpin) {
+JNIEXPORT jboolean Java_im_actor_sdk_util_Utilities_loadWebpImage(JNIEnv *env, jclass class, jobject outputBitmap, jobject buffer, jint len, jobject options, jboolean unpin) {
     if (!buffer) {
         (*env)->ThrowNew(env, jclass_NullPointerException, "Input buffer can not be null");
         return 0;

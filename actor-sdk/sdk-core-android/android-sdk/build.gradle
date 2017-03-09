@@ -124,9 +124,13 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.9.1'
     // Phone parser
     compile files('libs/libphonenumber-5.9.jar')
+    //Load native libs dynamically
+    compile 'net.hockeyapp.android:HockeySDK:4.1.2'
+
     // Core
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
+
     // Android Support
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:support-v13:25.2.0'

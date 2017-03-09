@@ -18,18 +18,15 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.widget.FrameLayout;
 
-import org.telegram.messenger.AndroidUtilities;
-
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-import im.actor.sdk.util.AndroidUtils;
 import im.actor.sdk.util.Screen;
 
 @SuppressLint("NewApi")
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener {
 
-    private org.telegram.messenger.camera.Size previewSize;
+    private Size previewSize;
     private boolean mirror;
     private TextureView textureView;
     private CameraSession cameraSession;

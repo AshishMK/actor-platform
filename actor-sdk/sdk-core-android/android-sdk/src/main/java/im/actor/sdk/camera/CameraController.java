@@ -36,6 +36,7 @@ import im.actor.runtime.Log;
 import im.actor.sdk.util.AndroidUtils;
 import im.actor.sdk.util.Screen;
 import im.actor.sdk.util.Utilities;
+import im.actor.sdk.util.images.Bitmaps;
 
 public class CameraController implements MediaRecorder.OnInfoListener {
 
