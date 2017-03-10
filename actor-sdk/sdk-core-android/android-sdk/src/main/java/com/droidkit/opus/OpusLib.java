@@ -7,10 +7,6 @@ import java.nio.ByteBuffer;
  */
 public class OpusLib {
 
-    static {
-        System.loadLibrary("droidkitopus");
-    }
-
     /**
      * Starting opus recording
      *

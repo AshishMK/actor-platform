@@ -14,6 +14,10 @@ import im.actor.sdk.util.Screen;
  */
 public class ActorSDKApplication extends Application {
 
+    static {
+        System.loadLibrary("actorsdk");
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

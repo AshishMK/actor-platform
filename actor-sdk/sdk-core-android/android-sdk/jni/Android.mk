@@ -192,7 +192,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_PRELINK_MODULE := false
 
-LOCAL_MODULE 	:= actorsdk.24
+LOCAL_MODULE 	:= actorsdk
 LOCAL_CFLAGS 	:= -w -std=c11 -Os -DNULL=0 -DSOCKLEN_T=socklen_t -DLOCALE_NOT_USED -D_LARGEFILE_SOURCE=1 -D_FILE_OFFSET_BITS=64
 LOCAL_CFLAGS 	+= -Drestrict='' -D__EMX__ -DOPUS_BUILD -DFIXED_POINT -DUSE_ALLOCA -DHAVE_LRINT -DHAVE_LRINTF -fno-math-errno
 LOCAL_CFLAGS 	+= -DANDROID_NDK -DDISABLE_IMPORTGL -fno-strict-aliasing -fprefetch-loop-arrays -DAVOID_TABLES -DANDROID_TILE_BASED_DECODE -DANDROID_ARMV6_IDCT -ffast-math -D__STDC_CONSTANT_MACROS
@@ -435,8 +435,7 @@ LOCAL_SRC_FILES     += \
 ./utils.c \
 ./image.c \
 ./video.c \
-./gifvideo.cpp \
-./NativeLoader.cpp
+./gifvideo.cpp
 
 include $(BUILD_SHARED_LIBRARY)
 

@@ -106,7 +106,7 @@ dependencies {
     // Phone parser
     compile files('libs/libphonenumber-5.9.jar')
     //Load native libs dynamically
-    compile 'net.hockeyapp.android:HockeySDK:4.1.2'
+//    compile 'net.hockeyapp.android:HockeySDK:4.1.2'
 
     // Core
     compile 'com.squareup.okhttp:okhttp:2.5.0'
