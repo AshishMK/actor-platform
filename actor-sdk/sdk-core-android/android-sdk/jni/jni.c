@@ -9,7 +9,6 @@
 #include "utils.h"
 #include "image.h"
 
-int registerNativeTgNetFunctions(JavaVM *vm, JNIEnv *env);
 int gifvideoOnJNILoad(JavaVM *vm, JNIEnv *env);
 
 jint JNI_OnLoad(JavaVM *vm, void *reserved) {
@@ -28,10 +27,6 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
         return -1;
     }
 
-    if (registerNativeTgNetFunctions(vm, env) != JNI_TRUE) {
-        return -1;
-    }
-    
 	return JNI_VERSION_1_6;
 }
 

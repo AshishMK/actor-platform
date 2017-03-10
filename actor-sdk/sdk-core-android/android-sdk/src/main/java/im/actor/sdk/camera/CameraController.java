@@ -33,6 +33,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import im.actor.runtime.Log;
+import im.actor.sdk.ImageLruCache;
 import im.actor.sdk.util.AndroidUtils;
 import im.actor.sdk.util.Screen;
 import im.actor.sdk.util.Utilities;
@@ -315,7 +316,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                 outputStream.getFD().sync();
                                 outputStream.close();
                                 if (scaled != null) {
-                                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(scaled), key);
+                                    ImageLruCache.getInstance().putImageToCache(new BitmapDrawable(scaled), key);
                                 }
                                 if (callback != null) {
                                     callback.run();
@@ -331,7 +332,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                         outputStream.getFD().sync();
                         outputStream.close();
                         if (bitmap != null) {
-                            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(bitmap), key);
+                            ImageLruCache.getInstance().putImageToCache(new BitmapDrawable(bitmap), key);
                         }
                     } catch (Exception e) {
                         Log.e("tmessages", e);
