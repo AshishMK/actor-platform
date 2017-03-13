@@ -41,7 +41,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         void onCameraInit();
     }
 
-    public CameraView(Context context) {
+     public CameraView(Context context) {
         super(context, null);
         textureView = new TextureView(context);
         textureView.setSurfaceTextureListener(this);
