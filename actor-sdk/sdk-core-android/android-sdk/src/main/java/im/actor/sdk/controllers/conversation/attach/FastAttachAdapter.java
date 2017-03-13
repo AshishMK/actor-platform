@@ -25,6 +25,7 @@ import java.util.Set;
 import im.actor.runtime.mvvm.ValueModel;
 import im.actor.sdk.ActorSDK;
 import im.actor.sdk.R;
+import im.actor.sdk.camera.CameraView;
 import im.actor.sdk.controllers.ActorBinder;
 import im.actor.sdk.util.Screen;
 
@@ -127,6 +128,19 @@ public class FastAttachAdapter extends RecyclerView.Adapter<FastAttachAdapter.Fa
             v.setController(controller);
             chb.setChecked(selected.contains(data));
         }
+    }
+
+    public class CameraShutterVH extends RecyclerView.ViewHolder {
+        private CameraView v;
+        private CompoundButton chb;
+        private String data;
+
+        public CameraShutterVH(View itemView) {
+            super(itemView);
+
+        }
+
+
     }
 
     public void notifyVm() {

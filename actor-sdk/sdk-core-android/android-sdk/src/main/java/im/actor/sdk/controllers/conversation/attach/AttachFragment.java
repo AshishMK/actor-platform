@@ -43,6 +43,7 @@ import im.actor.core.utils.GalleryScannerActor;
 import im.actor.runtime.collections.ManagedList;
 import im.actor.sdk.ActorSDK;
 import im.actor.sdk.R;
+import im.actor.sdk.camera.CameraView;
 import im.actor.sdk.controllers.conversation.attach.tg.AnimatorListenerAdapterProxy;
 import im.actor.sdk.controllers.tools.AttachOpenCloseCallback;
 import im.actor.sdk.controllers.tools.MediaPickerCallback;
@@ -78,8 +79,7 @@ public class AttachFragment extends AbsAttachFragment implements MediaPickerCall
     private View hideClone;
     private int fastShareWidth;
     private int spanCount;
-
-
+    private CameraView cameraView;
 
     public AttachFragment(Peer peer) {
         super(peer);
@@ -142,6 +142,8 @@ public class AttachFragment extends AbsAttachFragment implements MediaPickerCall
             return;
         }
         isLoaded = true;
+
+        startCameraView();
 
         shareButtons = getLayoutInflater(null).inflate(R.layout.share_menu, root, false);
         fastShare = new RecyclerView(getActivity());
@@ -318,6 +320,19 @@ public class AttachFragment extends AbsAttachFragment implements MediaPickerCall
 //        FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM | Gravity.RIGHT);
 //        params2.setMargins(0, 0, Screen.dp(20), Screen.dp(20));
 //        root.addView(hideClone, params2);
+    }
+
+    private void startCameraView(){
+        if(cameraView == null){
+            cameraView = new CameraView(getActivity());
+            cameraView.setDelegate(new CameraView.CameraViewDelegate() {
+                @Override
+                public void onCameraInit() {
+
+                }
+            });
+
+        }
     }
 
     private LinearLayoutManager getLinearLayoutManager(){
