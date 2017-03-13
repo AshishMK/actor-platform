@@ -133,10 +133,10 @@ if (project.rootProject.file('gradle.properties').exists()) {
 
 project.afterEvaluate {
 
-    artifacts {
-        archives javadocJarRelease
-        archives sourcesJarRelease
-    }
+//    artifacts {
+//        archives javadocJarRelease
+//        archives sourcesJarRelease
+//    }
 
     if (isDeployConfigured) {
 

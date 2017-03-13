@@ -73,8 +73,15 @@ public class FastAttachAdapter extends RecyclerView.Adapter<FastAttachAdapter.Fa
     }
 
     @Override
-    public void onBindViewHolder(FastShareVH holder, int position) {
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return 1;
+        }
+        return 0;
+    }
 
+    @Override
+    public void onBindViewHolder(FastShareVH holder, int position) {
         holder.bind(imagesPath.get(position));
     }
 
